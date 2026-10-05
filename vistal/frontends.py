@@ -241,6 +241,18 @@ def write_desktop_entries(target: Path | None = None) -> list[str]:
     target.mkdir(parents=True, exist_ok=True)
     out = []
     cmd = vistal_command()
+    lib_entry = target / "vistal-games.desktop"
+    lib_entry.write_text(
+        "[Desktop Entry]\n"
+        "Type=Application\n"
+        "Name=Vistal Games\n"
+        "Comment=Game library for Windows PC games (Proton)\n"
+        f"Exec={_desktop_escape(cmd)} gui\n"
+        "Icon=applications-games\n"
+        "Categories=Game;\n"
+        "Terminal=false\n"
+    )
+    out.append(str(lib_entry))
     for m in library.all_games():
         if not m.installed or not m.rom:
             continue

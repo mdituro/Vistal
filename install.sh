@@ -58,6 +58,10 @@ case ":$PATH:" in
     *) echo "Note: $bindir is not on your PATH; ES-DE finds Vistal there anyway." ;;
 esac
 
+# Desktop entry for the game library ("Vistal Games"); add it to Steam with
+# "Add a Non-Steam Game" to use the library from Game Mode.
+"$bindir/vistal" frontend desktop >/dev/null || true
+
 if [ "$esde" = 1 ]; then
     "$bindir/vistal" frontend esde
 fi

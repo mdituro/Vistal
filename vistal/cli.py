@@ -307,6 +307,23 @@ def cmd_controller(a) -> int:
     return 1
 
 
+def cmd_gui(a) -> int:
+    from .gui.cairo import CairoUnavailable
+    from .gui.sdl import SDLUnavailable
+    try:
+        if a.screenshot:
+            from .gui.app import screenshot
+            w, h = (int(v) for v in a.size.lower().split("x"))
+            screenshot(a.screenshot, w, h, theme=a.theme, view=a.view, select=a.select, menu=a.menu)
+            print(f"Wrote {a.screenshot}")
+            return 0
+        from .gui.app import App
+        return App(theme=a.theme, view=a.view).run()
+    except (CairoUnavailable, SDLUnavailable) as exc:
+        LOG.error("The game library needs the cairo and SDL2 system libraries: %s", exc)
+        return 1
+
+
 def cmd_doctor(a) -> int:
     from . import doctor
     return doctor.run()
@@ -404,6 +421,13 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--system-name", default=frontends.SYSTEM_NAME)
     sp.add_argument("--rom-dir", help="ROM root (ES-DE) or system ROM folder (EmulationStation)")
     sp.add_argument("--esde-home", help="ES-DE application data directory (default ~/ES-DE)")
+    sp = add("gui", cmd_gui, "open the game library (Windows Vista or Aqua look)", rom=False)
+    sp.add_argument("--theme", choices=["vista", "aqua"], help="override the remembered theme")
+    sp.add_argument("--view", choices=["extra-large", "large", "medium", "details"])
+    sp.add_argument("--screenshot", metavar="PNG", help="render to a PNG file instead of opening a window")
+    sp.add_argument("--size", default="1280x800", help="screenshot size (default 1280x800)")
+    sp.add_argument("--select", type=int, help="screenshot: index of the selected game")
+    sp.add_argument("--menu", help="screenshot: open this menu (organize, views, options, tools, game)")
     sp = add("controller", cmd_controller, "gamepad tools", rom=False)
     sp.add_argument("action", choices=["list", "test", "layouts", "show"])
     sp.add_argument("name", nargs="?", help="layout name for test/show")

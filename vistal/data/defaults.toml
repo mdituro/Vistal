@@ -55,3 +55,11 @@ combo_hold = 1.0
 [display]
 gamescope = false         # wrap in gamescope (desktop mode only; Game Mode already is)
 gamescope_args = ["-f", "-S", "fit"]
+
+[frontend]                # the `vistal gui` game library
+theme = "vista"           # vista (Windows Vista Games Explorer) | aqua (Mac OS X Aqua)
+view = "large"            # extra-large | large | medium | details
+sort = "name"             # name | last-played
+artwork = "auto"          # auto | icons | covers
+rom_dirs = []             # folders to scan; default: ES-DE's ROMs/gfw folder
+fullscreen = "auto"       # auto (fullscreen in Game Mode) | true | false

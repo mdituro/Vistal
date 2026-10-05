@@ -102,5 +102,7 @@ def test_emulationstation_and_desktop(isolated_home):
     gd = library.GameDir("freelancer")
     gd.save(library.Manifest(id="freelancer", title="Freelancer", rom="/roms/gfw/Free 100%.iso", exe="C:\\x.exe"))
     files = frontends.write_desktop_entries(isolated_home / "apps")
-    text = Path(files[0]).read_text()
+    assert "Exec=" in Path(files[0]).read_text() and Path(files[0]).read_text().rstrip().endswith("Terminal=false")
+    assert " gui" in Path(files[0]).read_text()
+    text = Path(next(f for f in files if f.endswith("vistal-freelancer.desktop"))).read_text()
     assert 'launch "/roms/gfw/Free 100%%.iso"' in text and "Name=Freelancer" in text

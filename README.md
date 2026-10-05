@@ -6,8 +6,12 @@ Rise of Legends, and Midtown Madness.
 
 You point it at a disc image. On first launch it runs the game's own installer
 inside a dedicated Proton prefix. After that, every launch goes straight into
-the game. It plugs into ES-DE, the EmulationStation frontend that EmuDeck
-installs, as a "Games for Windows" system.
+the game. It comes with its own game library styled after Windows Vista's
+Games Explorer, with an optional Mac OS X Aqua look. It also plugs into ES-DE,
+the EmulationStation frontend that EmuDeck installs, as a "Games for Windows"
+system.
+
+![The game library in the Windows Vista look](docs/screenshots/vista.png)
 
 - **3D acceleration through Proton.** Direct3D 8 to 11 goes through DXVK and
   older DirectDraw/Direct3D through WineD3D. Both run on Vulkan or OpenGL on the GPU.
@@ -20,7 +24,10 @@ installs, as a "Games for Windows" system.
   keyboard games get a per-game gamepad-to-keyboard/mouse layout. Hold Back+Start
   to quit any game.
 - **Keyboard and mouse** work as they do for any Proton game.
-- **No dependencies beyond Python 3.11**, which SteamOS already ships.
+- **A game library with large icons.** It shows each game's own program icon at
+  up to 256×256, or the box art that Games Explorer-ready games embed.
+- **No dependencies beyond Python 3.11**, which SteamOS already ships. The
+  library draws with cairo and SDL2, which SteamOS also ships.
 
 > **Status.** The disc reader, installer flow, Proton launching, controller
 > mapping and ES-DE integration are covered by an automated test suite. The suite
@@ -86,6 +93,64 @@ vistal launch /path/to/Game.iso
 vistal frontend emulationstation   # classic EmulationStation (es_systems.cfg)
 vistal frontend desktop            # .desktop entries for Steam's "Add a Non-Steam Game"
 ```
+
+## The game library
+
+```sh
+vistal gui                 # opens in the last-used look; --theme vista|aqua to choose
+```
+
+The installer creates a **Vistal Games** desktop entry. In Steam, choose
+"Add a Non-Steam Game", pick Vistal Games, and the library opens full screen
+in Game Mode.
+
+The library lists every disc image in your ROM folders next to the games you
+have installed. Choosing a game that isn't installed runs its installer first.
+It looks for games in ES-DE's `ROMs/gfw` folder; set `frontend.rom_dirs` in
+`~/.config/vistal/config.toml` to use other folders.
+
+**Windows Vista look.** This recreates the Games Explorer: Aero glass frame,
+back/forward orbs, breadcrumb address bar, the dark command bar (Organize,
+Views, Play, Options, Tools), column headers, Explorer's blue selection, a
+preview pane and a details pane.
+
+**Aqua look.** This recreates Mac OS X: pinstripes, traffic-light buttons, gel
+view switcher, a Finder-style sidebar with Installed, Not Installed and
+Recently Played filters, blue label pills, a Get Info inspector, and a Dock of
+your recent games.
+
+![The game library in the Aqua look](docs/screenshots/aqua.png)
+
+Views are **Extra Large Icons** (256 px), **Large Icons** (128 px), **Medium
+Icons** and **Details**.
+
+Artwork is chosen in this order:
+
+1. your own `boxart.png`/`.jpg` or `icon.png` in `~/.local/share/vistal/games/<id>/`
+2. box art that Games Explorer-ready games embed in their files
+3. the game program's icon, at the largest size it contains
+4. a cover ES-DE has scraped
+5. the icon named in the disc's `autorun.inf`, for games not installed yet
+
+Publisher, developer, genre and release date come from the same embedded
+Games Explorer data when a game provides it.
+
+| Gamepad | Keyboard / mouse | Action |
+|---------|------------------|--------|
+| D-pad / left stick | Arrow keys | Move the selection |
+| A | Enter / double-click or double-tap | Play, or install and then play |
+| X | Menu key / right-click | Game options: reinstall, Wine configuration |
+| Y | Views menu | Cycle Extra Large, Large, Medium, Details |
+| LB / RB | Options menu / sidebar | Switch look / filter by status |
+| LT / RT | Page Up / Page Down | Page through the library |
+| Back | `/` or Ctrl+F | Search; Steam's keyboard can type into it |
+| Start | | Main menu |
+| B | Esc | Close a menu, clear a filter, or exit |
+
+The window hides while a game runs and returns when the game exits. If a
+launch fails, the reason is shown in a dialog.
+
+![Details view with the Views menu](docs/screenshots/vista-details.png)
 
 ## How a launch works
 
@@ -187,6 +252,7 @@ vistal winecfg <rom> | tricks <rom> <verbs...>
 vistal list | profiles | protons | doctor
 vistal ls <image> | extract <image> <dir> | cache [show|clean]
 vistal shortcut <game-id> <dir>     write a .vistal file for an installed game
+vistal gui [--theme vista|aqua] [--view large] [--screenshot file.png]
 vistal frontend esde|emulationstation|desktop
 vistal controller list|test|layouts|show [layout]
 ```
@@ -217,7 +283,7 @@ example, apply the Freelancer 1.1 patch this way after the first install.
 ## Development
 
 ```sh
-pytest                 # needs genisoimage (or mkisofs) for the disc tests
+pytest                 # disc tests need genisoimage; library tests need cairo and SDL2
 ./install.sh --dev     # link ~/.local/bin/vistal to this checkout
 ```
 
@@ -233,3 +299,5 @@ The code is pure standard-library Python. The main modules are:
 | `detect` and `lnk` | Finding the game executable |
 | `controller/` | evdev/uinput mapper |
 | `frontends` | ES-DE and other frontends |
+| `icons` and `art` | Program icons, Games Explorer data and box art |
+| `gui/` | The game library: cairo and SDL2 bindings, themes, input |

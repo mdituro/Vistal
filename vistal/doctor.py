@@ -48,6 +48,17 @@ def run() -> int:
     except OSError as exc:
         line(None, "Gamepads", str(exc))
 
+    from .gui import cairo as gcairo, images as gimages, sdl as gsdl
+    line(gcairo.available() or None, "cairo (game library drawing)",
+         "available" if gcairo.available() else "missing: 'vistal gui' cannot run")
+    try:
+        gsdl.lib()
+        line(True, "SDL2 (game library window and gamepads)", "available")
+    except gsdl.SDLUnavailable as exc:
+        line(None, "SDL2 (game library window and gamepads)", f"missing: {exc}")
+    line(True if gimages._gdk_lib() else None, "gdk-pixbuf (JPEG box art)",
+         "available" if gimages._gdk_lib() else "missing: only PNG artwork will show")
+
     for tool, why in (("fuseiso", "mount images without copying"), ("7z", "UDF-only discs"),
                       ("bsdtar", "UDF-only discs"), ("chdman", ".chd images"),
                       ("zenity", "dialogs when launched from a frontend"),
