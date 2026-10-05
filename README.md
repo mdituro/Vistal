@@ -33,7 +33,7 @@ installs, as a "Games for Windows" system.
 On the Steam Deck, switch to Desktop Mode and open Konsole:
 
 ```sh
-git clone https://github.com/mdituro/vistal.git ~/vistal
+git clone https://github.com/mdituro/Vistal.git ~/vistal
 ~/vistal/install.sh --esde
 ```
 
