@@ -1,0 +1,18 @@
+id = "midtown-madness-2"
+title = "Midtown Madness 2"
+year = 2000
+notes = """
+Supports joysticks natively. The game streams some data from the disc, so
+the disc stays available as drive D: while playing.
+"""
+
+[match]
+names = ["midtown madness 2*"]
+labels = ["mm2*", "midtown*2*"]
+
+[launch]
+exe = ["mm2.exe", "Midtown2.exe"]
+
+[controller]
+mode = "native"
+layout = "driving"

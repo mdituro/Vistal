@@ -1,0 +1,19 @@
+id = "midtown-madness"
+title = "Midtown Madness"
+year = 1999
+notes = """
+DirectX 6 era game (DirectDraw/Direct3D 6), rendered by WineD3D. Supports
+joysticks natively, so the pad is passed straight to the game. CD audio
+(Red Book) music tracks are not played back from disc images.
+"""
+
+[match]
+names = ["midtown madness", "midtown madness 1"]
+labels = ["midtown*", "mm1*"]
+
+[launch]
+exe = ["Midtown.exe"]
+
+[controller]
+mode = "native"
+layout = "driving"

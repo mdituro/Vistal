@@ -1,0 +1,57 @@
+# Built-in defaults. Every key here can be overridden, in increasing order of
+# precedence, by: ~/.config/vistal/config.toml, the game's profile
+# (vistal/data/games/*.toml or ~/.config/vistal/profiles/*.toml), and the
+# per-game file ~/.config/vistal/games/<game-id>.toml.
+
+[proton]
+version = "auto"          # "auto", a name ("GE-Proton9-20", "experimental") or a path
+launcher = "auto"         # auto | umu | runtime | direct
+extra_dirs = []           # extra folders to search for Proton builds
+log = false               # PROTON_LOG=1, logs go to ~/.local/share/vistal/logs
+renderer = "auto"         # auto (DXVK for D3D8-11) | wined3d
+dxvk_d3d8 = false         # route Direct3D 8 through DXVK (opt-in on Proton 9)
+fps_limit = 0             # DXVK frame cap, 0 = off
+cpu_cores = 0             # expose only N cores (helps some very old engines)
+large_address_aware = false
+heap_delay_free = false
+old_gl_string = false     # truncate the OpenGL extension string (old GL games)
+umu_gameid = "umu-default"
+env = {}
+dll_overrides = {}
+
+[disc]
+method = "auto"           # auto | extract | fuseiso | udisks
+letter = "d"              # first CD-ROM drive letter inside Wine
+mount_while_playing = true
+
+[install]
+launch_after_install = true
+args = []                 # extra arguments for the installer
+controller_layout = "desktop"
+
+[launch]
+exe = []                  # candidate executable names, first match wins
+args = []
+workdir = ""              # default: the executable's folder
+
+[prefix]
+winver = ""               # e.g. "winxp", "win7"; empty keeps Proton's default
+virtual_desktop = ""      # e.g. "1024x768" to run inside a Wine desktop
+registry = []             # extra REGEDIT4 lines applied to the prefix
+copy_to_game_dir = []     # files copied next to the game exe (e.g. your own DLL fixes)
+
+[controller]
+mode = "auto"             # auto | mapped | native | off
+layout = "desktop"
+grab = true               # hide the pad from the game while mapping
+device = ""               # only use pads whose name contains this text
+face_layout = "auto"      # auto | xbox | standard (button positions)
+exit_combo = ["back", "start"]
+exit_hold = 1.5
+disc_next_combo = ["back", "dpad_right"]
+disc_prev_combo = ["back", "dpad_left"]
+combo_hold = 1.0
+
+[display]
+gamescope = false         # wrap in gamescope (desktop mode only; Game Mode already is)
+gamescope_args = ["-f", "-S", "fit"]

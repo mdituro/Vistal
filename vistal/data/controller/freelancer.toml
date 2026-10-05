@@ -1,0 +1,46 @@
+# Freelancer: a starting point. Freelancer steers with the mouse (hold left
+# button, or toggle mouse flight with Space) and fires with the right button.
+# Check Options > Controls in game and adjust the bindings below to match.
+name = "Freelancer"
+description = "Right stick steers (mouse), left stick throttle/strafe, RT fires."
+
+[settings]
+deadzone = 0.12
+mouse_speed = 1400
+mouse_accel = 1.6
+precision_factor = 0.35
+
+[sticks]
+left = "keys"
+right = "mouse"
+
+[bindings]
+ls_up = "w"             # throttle up
+ls_down = "s"           # throttle down
+ls_left = "a"           # strafe
+ls_right = "d"
+rt = "mouse_right"      # fire weapons
+lt = "mouse_left"       # steer / select target
+a = "tab"               # afterburner
+b = "space"             # toggle mouse flight
+x = "shift+w"           # engage cruise
+y = "mouse_left"        # click (menus, targets)
+lb = "layer:alt"
+rb = "precision"        # fine aiming
+start = "esc"
+ls = "shift"
+rs = "mouse_middle"
+dpad_up = "f1"          # F1-F4: bind these to whatever you use most in game
+dpad_right = "f2"
+dpad_down = "f3"
+dpad_left = "f4"
+
+[layers.alt]            # hold LB
+a = "1"
+b = "2"
+x = "3"
+y = "4"
+dpad_up = "5"
+dpad_right = "6"
+dpad_down = "7"
+dpad_left = "8"

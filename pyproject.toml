@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vistal"
+version = "0.1.0"
+description = "Run early-2000s Windows PC games from their discs on SteamOS via Proton"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+vistal = "vistal.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["vistal*"]
+
+[tool.setuptools.package-data]
+vistal = ["data/*.toml", "data/games/*.toml", "data/controller/*.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

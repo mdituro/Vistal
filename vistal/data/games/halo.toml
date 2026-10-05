@@ -1,0 +1,14 @@
+id = "halo"
+title = "Halo: Combat Evolved"
+year = 2003
+
+[match]
+names = ["halo", "halo combat evolved*", "halo - combat evolved*", "halo pc*"]
+labels = ["halo*"]
+
+[launch]
+exe = ["halo.exe"]
+
+[controller]
+mode = "native"           # Halo PC reads gamepads itself
+layout = "fps"

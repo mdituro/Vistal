@@ -1,0 +1,32 @@
+# Keyboard-style driving (arrow keys). Prefer controller.mode = "native" for
+# games that support joysticks themselves; use this when they do not.
+name = "Driving (arrow keys)"
+description = "Left stick steers, RT accelerates, LT brakes/reverses."
+
+[settings]
+deadzone = 0.2
+stick_threshold = 0.35
+trigger_threshold = 0.25
+
+[sticks]
+left = "keys"
+right = "none"
+
+[bindings]
+ls_left = "left"
+ls_right = "right"
+ls_up = "up"
+ls_down = "down"
+rt = "up"
+lt = "down"
+a = "space"             # handbrake in most arcade racers
+b = "h"
+x = "c"
+y = "enter"
+lb = "pagedown"
+rb = "pageup"
+start = "esc"
+dpad_up = "up"
+dpad_down = "down"
+dpad_left = "left"
+dpad_right = "right"

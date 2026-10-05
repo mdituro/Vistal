@@ -1,0 +1,22 @@
+id = "rise-of-legends"
+title = "Rise of Nations: Rise of Legends"
+year = 2006
+notes = """
+Direct3D 9 strategy game; runs through DXVK. If the executable is not found
+automatically after installing, pick it from the list Vistal shows (or set
+launch.exe in ~/.config/vistal/games/rise-of-legends.toml).
+"""
+
+[match]
+names = ["*rise of legends*"]
+labels = ["*legends*"]
+
+[launch]
+exe = ["RiseOfLegends.exe", "rol.exe"]
+
+[proton]
+large_address_aware = true
+
+[controller]
+mode = "mapped"
+layout = "rts"

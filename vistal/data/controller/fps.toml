@@ -1,0 +1,34 @@
+# First-person shooter layout (WASD + mouse look). Adjust to each game's keys.
+name = "First-person shooter"
+description = "Left stick WASD, right stick mouse look, RT fire, LT alt-fire."
+
+[settings]
+deadzone = 0.12
+mouse_speed = 1600
+mouse_accel = 2.2
+precision_factor = 0.4
+
+[sticks]
+left = "keys"
+right = "mouse"
+
+[bindings]
+ls_up = "w"
+ls_down = "s"
+ls_left = "a"
+ls_right = "d"
+rt = "mouse_left"
+lt = "mouse_right"
+a = "space"
+b = "ctrl"
+x = "r"
+y = "e"
+lb = "g"
+rb = "f"
+ls = "shift"
+rs = "precision"
+start = "esc"
+dpad_up = "wheel_up"
+dpad_down = "wheel_down"
+dpad_left = "q"
+dpad_right = "tab"

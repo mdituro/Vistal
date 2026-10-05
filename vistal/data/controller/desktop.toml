@@ -1,0 +1,33 @@
+# Generic point-and-click layout. Used for installers, launchers and menus,
+# and a sensible fallback for any mouse-driven game.
+name = "Desktop / point and click"
+description = "Left stick moves the cursor, right stick scrolls, A/B click."
+
+[settings]
+deadzone = 0.15
+mouse_speed = 1100
+mouse_accel = 1.8
+precision_factor = 0.3
+
+[sticks]
+left = "mouse"
+right = "scroll"
+
+[bindings]
+a = "mouse_left"
+b = "mouse_right"
+x = "mouse_middle"
+y = "enter"
+lb = "precision"        # hold for slow, accurate cursor movement
+rb = "shift"
+lt = "mouse_right"
+rt = "mouse_left"
+start = "esc"
+# "back" is left unbound on purpose: it is the modifier for Vistal's hotkeys
+# (hold Back+Start to quit, Back+D-pad right to swap discs).
+dpad_up = "up"
+dpad_down = "down"
+dpad_left = "left"
+dpad_right = "right"
+ls = "tab"
+rs = "space"

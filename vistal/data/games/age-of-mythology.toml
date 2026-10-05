@@ -1,0 +1,14 @@
+id = "age-of-mythology"
+title = "Age of Mythology"
+year = 2002
+
+[match]
+names = ["age of mythology*", "aom*"]
+labels = ["aom*", "age of myth*"]
+
+[launch]
+exe = ["aomx.exe", "aom.exe"]           # The Titans first, then the base game
+
+[controller]
+mode = "mapped"
+layout = "rts"

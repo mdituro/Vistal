@@ -1,0 +1,47 @@
+# Real-time strategy layout (Rise of Legends, Age of Empires II, Age of
+# Mythology, Rise of Nations...). Hotkeys differ between games, so the face
+# buttons only use universal ones; rebind to taste.
+name = "Real-time strategy"
+description = "Left stick cursor, right stick scrolls the map, hold LT for control groups."
+
+[settings]
+deadzone = 0.15
+mouse_speed = 1200
+mouse_accel = 2.0
+precision_factor = 0.3
+stick_threshold = 0.45
+
+[sticks]
+left = "mouse"
+right = "keys"          # right stick = arrow keys (camera pan)
+
+[bindings]
+a = "mouse_left"        # select / command
+b = "mouse_right"       # move / attack / context action
+x = "mouse_middle"
+y = "space"             # most RTS games: jump to last event
+lb = "shift"            # add to selection / queue orders
+rb = "ctrl"             # with a group number: assign control group
+lt = "layer:groups"     # hold: face buttons + d-pad become groups 1-8
+rt = "precision"        # hold: slow cursor for small units
+start = "esc"
+ls = "home"
+rs = "f10"
+dpad_up = "wheel_up"    # zoom in (where supported)
+dpad_down = "wheel_down"
+dpad_left = "comma"     # AoE II / AoM: cycle idle military
+dpad_right = "period"   # AoE II / AoM: cycle idle villagers
+rs_up = "up"
+rs_down = "down"
+rs_left = "left"
+rs_right = "right"
+
+[layers.groups]
+a = "1"
+b = "2"
+x = "3"
+y = "4"
+dpad_up = "5"
+dpad_right = "6"
+dpad_down = "7"
+dpad_left = "8"

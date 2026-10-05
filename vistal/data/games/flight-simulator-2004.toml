@@ -1,0 +1,17 @@
+id = "flight-simulator-2004"
+title = "Microsoft Flight Simulator 2004"
+year = 2003
+
+[match]
+names = ["*flight simulator 2004*", "fs2004*", "fs9*"]
+labels = ["fs2004*", "fs9*"]
+
+[launch]
+exe = ["fs9.exe"]
+
+[proton]
+large_address_aware = true
+
+[controller]
+mode = "native"
+layout = "desktop"

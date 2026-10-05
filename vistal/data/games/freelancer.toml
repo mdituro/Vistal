@@ -1,0 +1,22 @@
+id = "freelancer"
+title = "Freelancer"
+year = 2003
+notes = """
+Direct3D 8 game; runs through DXVK's D3D8 path. Multiplayer used DirectPlay
+and GameSpy, so expect single player (or community servers) only.
+"""
+
+[match]
+names = ["freelancer*"]
+labels = ["freelancer*"]
+
+[launch]
+exe = ["Freelancer.exe"]
+
+[proton]
+dxvk_d3d8 = true
+fps_limit = 60            # old engine; raise it if you like
+
+[controller]
+mode = "mapped"
+layout = "freelancer"

@@ -1,0 +1,14 @@
+id = "age-of-empires-2"
+title = "Age of Empires II"
+year = 1999
+
+[match]
+names = ["age of empires ii*", "age of empires 2*", "aoe2*", "aoe ii*"]
+labels = ["aoe2*", "age2*"]
+
+[launch]
+exe = ["age2_x1.exe", "empires2.exe"]   # The Conquerors first, then the base game
+
+[controller]
+mode = "mapped"
+layout = "rts"
